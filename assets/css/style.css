@@ -1,0 +1,65 @@
+.full {
+	background: url(../images/riddler.jpg) no-repeat fixed;
+	background-size: cover;
+
+}
+.container {
+	min-height: 100%;
+	width: 50%;
+	background: rgba(0,0,0,0.5);
+}
+
+body {
+	background: rgba(0,0,0,0.0);
+	height: 100%;
+}
+html {
+	height: 100%;
+}
+
+#introScreen {
+	margin-top: 75px;
+}
+.page-header {
+	border-bottom: none;
+}
+
+#title {
+	font-size: 75px;
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+	color: #00DD0C;
+	/*text-shadow: 
+		-2px -2px 0 #000000,
+		2px -2px 0 #000000,
+		-2px 2px 0 #000000,
+		2px 2px 0 #000000;*/
+}
+
+#subText {
+	font-size: 25px;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 100px;
+	font-family: 'Roboto Slab', sans-serif;
+	color: white;
+}
+
+#button {
+	text-align: center;
+}
+
+.btn {
+	background-color: black;
+	width: 150px;
+	font-size: 18px;
+	font-family: 'Roboto Slab', sans-serif;
+	color: white;
+}
+.btn:hover {
+	color: #00DD0C;
+}
+
+#question {
+	text-align: center;
+}
