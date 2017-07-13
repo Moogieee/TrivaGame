@@ -13,11 +13,12 @@ $(document).ready(function() {
 	var unanswered = 0;
 	var timeRemaining;
 	var count = 0;
+	var currentQuestion = 0;
 
 var riddles = [
 	// riddle 1
 	{
-		"r": "The more you take the more you leave behind. What am I",
+		"r": "The more you take the more you leave behind. What am I?",
 		"c": ["Footsteps", "Memories", "Farts"],
 		"answer": 0 //the index of the answer
 	},
@@ -66,7 +67,7 @@ var riddles = [
 
 	// riddle 8
 	{
-		"r": "Poor people have it. Rich people need it. If you eat it you die",
+		"r": "Poor people have it. Rich people need it. If you eat it you die.",
 		"c": ["Money", "Nothing", "Gold"],
 		"answer": 1
 	},
@@ -87,33 +88,44 @@ var riddles = [
 
 ];
 
-
-// function for timer
-function timerCounter() {
-	timer = setInterval(decrementTimer, 1000);
+// create a runTimer that decreases every second
+function runTimer() {
+	intervalId = setInterval(decrementTimer, 1000);
 }
 
-// function to decrease the timer
-function decrementTimer() {
-	timeRemaining--;
+// create a decrementTimer function that will display the timer on the page
+function decrementTimer () {
+	timer--;
+
+	$("#timer").html("<h3>Time Remaining: " + timer + "<h3>");
+
+	if (timer === 0) {
+		stop();
+		loss++;
+	}
 }
 
-// timer counter on page
-$("#timer").html("Time remaining: " + timeRemaining);
+// stop function that stops the timer from decrementing after it reaches 0
+function stop() {
+	clearInterval(intervalId);
+
+}
+
+runTimer();
 
 
+
+// question function
 function displayQuestion() {
 	$("#question").html(riddles[count]);
 }
 
-function nextQuestion() {
-	count++
-}
 
 // create a function so that after you click the start button your trivia question and choices will show up.
 function startTrivia() {
 	$("endingSection").hide();
 	$("#questionSection").show();
+	$("#question").show();
 	$("#choices").show();
 	$("#timer").show();
 	correct = 0;
@@ -121,6 +133,7 @@ function startTrivia() {
 	unanswered = 0;
 }
 
+// run this at the endingSection
 function resetTrivia() {
 	$("#endingSection").show();
 	$("#questionSection").hide();
@@ -132,9 +145,11 @@ function resetTrivia() {
 	setTimeout(startTrivia, 1000)
 }
 
+// sets the start button at the intro screen
 $("#startButton").on("click", function() {
 	$("#button").hide();
 	$("#subMessage").hide();
+	$("#questionSection").fadeIn(1000);
 
 	startTrivia();
 })

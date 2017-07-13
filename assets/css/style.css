@@ -5,8 +5,8 @@
 }
 .container {
 	min-height: 100%;
-	width: 50%;
-	background: rgba(0,0,0,0.5);
+	width: 100%;
+	background: rgba(0,0,0,0.1);
 }
 
 body {
@@ -43,6 +43,15 @@ html {
 	margin-bottom: 100px;
 	font-family: 'Roboto Slab', sans-serif;
 	color: white;
+}
+
+#timer {
+	text-align: center;
+	font-family: 'Roboto Slab', sans-serif;
+}
+#questionSection {
+	width: 40%;
+
 }
 
 #button {
