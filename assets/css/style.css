@@ -29,6 +29,7 @@ html {
 	text-align: center;
 	font-family: 'Audiowide', cursive;
 	color: #00DD0C;
+	margin-bottom: 20px;
 	/*text-shadow: 
 		-2px -2px 0 #000000,
 		2px -2px 0 #000000,
@@ -46,8 +47,10 @@ html {
 }
 
 #timer {
+	font-size: 20px;
 	text-align: center;
 	font-family: 'Roboto Slab', sans-serif;
+	margin-bottom: 40px;
 }
 #questionSection {
 	width: 40%;
@@ -71,4 +74,19 @@ html {
 
 #question {
 	text-align: center;
+	font-family: 'Roboto Slab', sans-serif;
+	color: black;
+	font-size: 25px;
+	margin-bottom: 40px;
+}
+
+#choices {
+	font-family: 'Roboto Slab', sans-serif;
+	color: black;
+	font-size: 20px;
+}
+
+.choiceButton {
+	background-color: transparent;
+	border: none;
 }
