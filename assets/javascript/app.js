@@ -7,10 +7,9 @@ $(document).ready(function() {
 
 
 // GLOBAL VARIABLES
-	var timer = 30;
+	var timer = 31;
 	var correct = 0;
 	var incorrect = 0;
-	var unanswered = 0;
 	var timeRemaining;
 	var count = 0;
 	var currentQuestion = 0;
@@ -20,14 +19,14 @@ var riddles = [
 	{
 		"riddle": "The more you take the more you leave behind. What am I?",
 		"answers": ["Footsteps", "Memories", "Farts"],
-		"correctAnswer": 0 //the index of the answer
+		"correctAnswer": "A" //the index of the answer
 	},
 
 	// riddle 2
 	{
 		"riddle": "You throw away the outside and cook the inside. Then you eat the outside and throw away the inside. What did you eat?",
 		"answers": ["Pistachio Nuts", "Ear of Corn", "Potato"],
-		"correctAnswer": 1
+		"correctAnswer": "B"
 	},
 
 	// riddle 3
@@ -120,30 +119,24 @@ runTimer();
 
 
 // question function
-function displayQuestion() {
+function displayQuestionSection() {
+	timer = 31;
 	$("#question").text(riddles[count].riddle);
+	$("#buttonA").text(riddles[count].answers[0]);
+	$("#buttonB").text(riddles[count].answers[1]);
+	$("#buttonC").text(riddles[count].answers[2]);
 
 }
 
-// function for choices
-function displayChoices() {
-	 $("#buttonA").text(riddles[count].answers[0]);
-	 $("#buttonB").text(riddles[count].answers[1]);
-	 $("#buttonC").text(riddles[count].answers[2]);
-}
-
-$("#choices").on("click", function() {
-
-});
+//make onclick function for answer buttons
 
 // function for nextQuestion
-function nextQuestion() {
-
-}
-
-// function for next question choices
-function nextChoices(){
-
+function nextQuestionSection() {
+	count++;
+	$("#question").text('');
+	$("#buttonA").text('');
+	$("#buttonB").text('');
+	$("#buttonC").text('');
 }
 
 function correctAnswer() {
@@ -154,6 +147,8 @@ function wrongAnswer() {
 	incorrect ++;
 }
 
+$("")
+
 // create a function so that after you click the start button your trivia question and choices will show up.
 function startTrivia() {
 	$("endingSection").hide();
@@ -161,25 +156,22 @@ function startTrivia() {
 	$("#question").show();
 	$("#choices").show();
 	$("#timer").show();
-	displayQuestion();
-	displayChoices();
-	timer = 30;
+	displayQuestionSection();
+	timer = 31;
 	correct = 0;
 	incorrect = 0;
 	unanswered = 0;
 }
 
 // run this at the endingSection
-function resetTrivia() {
+function endTrivia() {
 	$("#endingSection").show();
 	$("#questionSection").hide();
-	$("#timer").hide();
-	stop();
 
 	$("#endCounter").append("<h4>Total Correct: " + correct + "<h4>");
 	$("#endCounter").append("<h4>Total incorrect: " + incorrect + "<h4>");
 
-	setTimeout(startTrivia, 3000)
+	setTimeout(startTrivia, 5000)
 }
 
 // sets the start button at the intro screen
@@ -188,7 +180,43 @@ $("#startButton").on("click", function() {
 	$("#subMessage").hide();
 	$("#questionSection").fadeIn(2000);
 	$("#endingSection").hide();
-	timer = 30;
+	timer = 31;
 
 	startTrivia();
-})
+});
+
+$(".choiceButton").on("click", function() {
+	if(this.id == "buttonA") {
+		var answerChosen = "A";
+	} else if (this.id == "buttonB") {
+		var answerChosen = "B";
+	} else if (this.id == "buttonC") {
+		var answerChosen = "C";
+	}
+
+	if ((answerChosen == "A") && (riddles[count].correctAnswer[0] == true)) {
+		correctAnswer();
+	} else if (answerChosen == "A") {
+		wrongAnswer();
+	}
+
+	if ((answerChosen == "B") && (riddles[count].correctAnswer[1] == true)) {
+		correctAnswer();
+	} else if (answerChosen == "B") {
+		wrongAnswer();
+	}
+
+	if ((answerChosen == "C") && (riddles[count].correctAnswer[2] == true)) {
+		correctAnswer();
+	} else if (answerChosen == "C") {
+		wrongAnswer();
+	}
+	// console.log(answerChosen);
+
+	 displayQuestionSection();
+	 if (count < riddles.length) {
+	 	count++;
+	 } else {
+	 	endTrivia();
+	 }
+});
