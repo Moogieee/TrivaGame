@@ -1,12 +1,12 @@
 $(document).ready(function() {
 	$("#introSection").hide();
 	$("#introSection").fadeIn(3000);
-	$("endingSection").hide();
+	$("#endingSection").hide();
 	$("#questionSection").hide();
 });
 
 
-// GLOBAL VARIABLES
+//  VARIABLES
 	var timer = 31;
 	var correct = 0;
 	var incorrect = 0;
@@ -17,75 +17,83 @@ $(document).ready(function() {
 var riddles = [
 	// riddle 1
 	{
-		"riddle": "The more you take the more you leave behind. What am I?",
+		"question": "The more you take the more you leave behind. What am I?",
 		"answers": ["Footsteps", "Memories", "Farts"],
-		"correctAnswer": "A" //the index of the answer
+		"correctAnswer": 0 //the index of the answer
 	},
 
 	// riddle 2
 	{
-		"riddle": "You throw away the outside and cook the inside. Then you eat the outside and throw away the inside. What did you eat?",
+		"question": "You throw away the outside and cook the inside. Then you eat the outside and throw away the inside. What did you eat?",
 		"answers": ["Pistachio Nuts", "Ear of Corn", "Potato"],
-		"correctAnswer": "B"
+		"correctAnswer": 1
 	},
 
 	// riddle 3
 	{
-		"riddle": "What travels around the world but stays in one spot?",
+		"question": "What travels around the world but stays in one spot?",
 		"answers": ["The sun", "A letter", "A stamp"],
 		"correctAnswer": 2
 	},
 
 	// riddle 4
 	{
-		"riddle": "What's black when you get it, red when you use it, and white when you're all through with it?",
+		"question": "What's black when you get it, red when you use it, and white when you're all through with it?",
 		"answers": ["Bullet", "Lobster", "Charcoal"],
 		"correctAnswer": 2
 	},
 
 	// riddle 5
 	{
-		"riddle": "What can run but never walks, has a mouth but never talks, has a head but never weeps, and has a bed but never sleeps?",
+		"question": "What can run but never walks, has a mouth but never talks, has a head but never weeps, and has a bed but never sleeps?",
 		"answers": ["A river", "A cheetah", "A car"],
 		"correctAnswer": 0
 	},
 
 	// riddle 6
 	{
-		"riddle": "I'm tall when I'm young and I'm short when I'm old. What am I?",
+		"question": "I'm tall when I'm young and I'm short when I'm old. What am I?",
 		"answers": ["A human", "A tree", "A candle"],
 		"correctAnswer": 2
 	},
 
 	// riddle 7
 	{
-		"riddle": "What goes up but never goes down",
+		"question": "What goes up but never goes down",
 		"answers": ["Stairs", "Your Height", "Your age"],
 		"correctAnswer": 2
 	},
 
 	// riddle 8
 	{
-		"riddle": "Poor people have it. Rich people need it. If you eat it you die.",
+		"question": "Poor people have it. Rich people need it. If you eat it you die.",
 		"answers": ["Money", "Nothing", "Gold"],
 		"correctAnswer": 1
 	},
 
 	// riddle 9
 	{
-		"riddle": "You will always find me in the past. I can be created in the present, But the future can never taint me. What am I?",
+		"question": "You will always find me in the past. I can be created in the present, But the future can never taint me. What am I?",
 		"answers": ["History", "Memories", "Footprints"],
 		"correctAnswer": 0
 	},
 
 	// riddle 10
 	{
-		"riddle": "What belongs to you but others use it more than you do? ",
+		"question": "What belongs to you but others use it more than you do? ",
 		"answers": ["Money", "Phone number", "Name"],
 		"correctAnswer": 2
 	},
 
 ];
+
+var introScreen = function() {
+	$("#introSection").hide();
+	$("#introSection").fadeIn(2000);
+	$("#endingSection").hide();
+	$("#questionSection").hide();
+
+}
 
 // create a runTimer that decreases every second
 function runTimer() {
@@ -94,17 +102,22 @@ function runTimer() {
 
 
 // create a decrementTimer function that will display the timer on the page
-function decrementTimer () {
+function decrementTimer() {
 	timer--;
 	$("#timer").text("Time Remaining: " + timer);
 
 	if (timer === 0) {
 		stop();
-		loss++;
+		count++;
+		displayQuestionSection();
+		runTimer();
+		$("#timer").css('color', 'black');
+		incorrect++;
 	}
 
 	if (timer <= 10) {
-		// flash number red
+		$("#timer").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+		$("#timer").css('color', 'red');
 	}
 }
 
@@ -114,6 +127,7 @@ function stop() {
 
 }
 
+// I forgot why I put this here... like why is this here in this specific area? It works so I'm not touching it...
 runTimer();
 
 
@@ -121,41 +135,20 @@ runTimer();
 // question function
 function displayQuestionSection() {
 	timer = 31;
-	$("#question").text(riddles[count].riddle);
+	$("#question").text(riddles[count].question);
 	$("#buttonA").text(riddles[count].answers[0]);
 	$("#buttonB").text(riddles[count].answers[1]);
 	$("#buttonC").text(riddles[count].answers[2]);
-
 }
 
-//make onclick function for answer buttons
-
-// function for nextQuestion
-function nextQuestionSection() {
-	count++;
-	$("#question").text('');
-	$("#buttonA").text('');
-	$("#buttonB").text('');
-	$("#buttonC").text('');
-}
-
-function correctAnswer() {
-	correct++;
-}
-
-function wrongAnswer() {
-	incorrect ++;
-}
-
-$("")
 
 // create a function so that after you click the start button your trivia question and choices will show up.
 function startTrivia() {
 	$("endingSection").hide();
-	$("#questionSection").show();
-	$("#question").show();
-	$("#choices").show();
-	$("#timer").show();
+	$("#questionSection").fadeIn(3000);
+	$("#question").fadeIn(3000);
+	$("#choices").fadeIn(3000);
+	$("#timer").fadeIn(3000);
 	displayQuestionSection();
 	timer = 31;
 	correct = 0;
@@ -165,13 +158,11 @@ function startTrivia() {
 
 // run this at the endingSection
 function endTrivia() {
-	$("#endingSection").show();
+	$("#endingSection").fadeIn(2000);
 	$("#questionSection").hide();
-
 	$("#endCounter").append("<h4>Total Correct: " + correct + "<h4>");
 	$("#endCounter").append("<h4>Total incorrect: " + incorrect + "<h4>");
-
-	setTimeout(startTrivia, 5000)
+	stop();
 }
 
 // sets the start button at the intro screen
@@ -185,38 +176,48 @@ $("#startButton").on("click", function() {
 	startTrivia();
 });
 
+// restart
+$("#restartButton").on("click", function() {
+	correct = 0;
+	incorrect = 0;
+	count = 0;
+	$("#endCounter").empty();
+	$("#endingSection").hide();
+	startTrivia();
+
+})
+
+// answer choices buttons function
 $(".choiceButton").on("click", function() {
 	if(this.id == "buttonA") {
-		var answerChosen = "A";
+		var answerChosen = 0;
 	} else if (this.id == "buttonB") {
-		var answerChosen = "B";
+		var answerChosen = 1;
 	} else if (this.id == "buttonC") {
-		var answerChosen = "C";
+		var answerChosen = 2;
 	}
 
-	if ((answerChosen == "A") && (riddles[count].correctAnswer[0] == true)) {
-		correctAnswer();
-	} else if (answerChosen == "A") {
-		wrongAnswer();
+	if ((answerChosen === 0) && (riddles[count].correctAnswer === 0)) {
+		correct++;
+		console.log("right");
+	} else if ((answerChosen === 1) && (riddles[count].correctAnswer === 1)) {
+		correct++;
+		console.log("correct");
+	} else 	if ((answerChosen === 2) && (riddles[count].correctAnswer === 2)) {
+		correct++
+		console.log("YAY");
+	} else {
+		incorrect++
+		console.log("wrong")
 	}
 
-	if ((answerChosen == "B") && (riddles[count].correctAnswer[1] == true)) {
-		correctAnswer();
-	} else if (answerChosen == "B") {
-		wrongAnswer();
-	}
-
-	if ((answerChosen == "C") && (riddles[count].correctAnswer[2] == true)) {
-		correctAnswer();
-	} else if (answerChosen == "C") {
-		wrongAnswer();
-	}
-	// console.log(answerChosen);
-
-	 displayQuestionSection();
-	 if (count < riddles.length) {
-	 	count++;
+// keep displaying questions until the last question is answered. Then show the end page.
+	count++;
+	if (count < riddles.length) {
+	 	displayQuestionSection();
 	 } else {
 	 	endTrivia();
 	 }
+
+
 });

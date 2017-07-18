@@ -24,7 +24,7 @@
 
 	<!-- Intro Section -->
 	<section id="introSection">
-		<h1 id="title"">Riddle Me This</h1>
+		<h1 id="title">Riddle Me This</h1>
 
 		<div class="row" id="subMessage">
 			<p id="subText">Can you solve these riddles?</p>
@@ -38,19 +38,19 @@
 
 		<!-- Timer, Question, Choices -->
 		<section id="questionSection" class="container">
-
 			<div class="row">
 				<!-- Timer -->
-				<div class="col-md-12 center-align" id="timer">
-				</div>
-					
+				<div class="col-md-12" id="timer">
+				</div>			
 			</div>
-
+			
+			<!-- Question -->
 			<div class="row">
-				<div class="col-md-12 center-align" id="question">
+				<div class="col-md-12" id="question">
 				</div>
 			</div>
 
+			<!-- Possible Answers -->
 			<div class="row">
 				<div class="col-md-12 text-center" id="choices">
 					<div>
@@ -64,17 +64,25 @@
 					</div>
 				</div>
 			</div>
-
 		</section>
 
-		<!-- End Page -->
-		<section>
-			<div class="row" id="endingSection">
+		<!-- Ending Page -->
+		<section id="endingSection" class="container">
+			<div class="row">
+
+				<!-- Show total Correct/Incorrect -->
 				<div class="col-md-12" id="endCounter">
+				</div>
+
+				<!-- Restart Button -->
+				<div class="col-md-12"  id="restart">
+					<button type="button" class="btn btn-secondary restartBtn" id="restartButton">Restart</button>
 				</div>
 			</div>
 		</section>
+
 	</section>
+
 </div>
 
 

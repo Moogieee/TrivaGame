@@ -30,11 +30,7 @@ html {
 	font-family: 'Audiowide', cursive;
 	color: #00DD0C;
 	margin-bottom: 20px;
-	/*text-shadow: 
-		-2px -2px 0 #000000,
-		2px -2px 0 #000000,
-		-2px 2px 0 #000000,
-		2px 2px 0 #000000;*/
+
 }
 
 #subText {
@@ -90,16 +86,51 @@ html {
 
 .choiceButton {
 	background-color: black;
-	width: 40%;
+	width: 50%;
 	margin-bottom: 10px;
 	border: none;
 }
 
-.choiceButton:hover {
-	background-color: black;
-	width: 40%;
+.choiceButton:focus {
+	outline: none;
+	color: white;
 }
 
+.choiceButton:hover {
+	background-color: black;
+	width: 50%;
+	color: #00DD0C;
+}
+
+.choiceButton:visited {
+	background-color: black;
+	width: 50%;
+	color: white;
+}
+
+.choiceButton:active {
+	background-color: black;
+	width: 50%;
+	color: white;
+}
+
+
 #buttonC {
+	margin-bottom: 40px;
+}
+
+#endingSection {
+	background: rgba(0,0,0,0.4);
+	width: 40%;
+	text-align: center;
+}
+
+#endCounter {
+	margin-top: 40px;
+	margin-bottom: 20px;
+	color: white;
+}
+
+#restartButton {
 	margin-bottom: 40px;
 }
