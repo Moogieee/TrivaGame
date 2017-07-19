@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$("#introSection").fadeIn(3000);
 	$("#endingSection").hide();
 	$("#questionSection").hide();
-});
+}); 
 
 
 //  VARIABLES
